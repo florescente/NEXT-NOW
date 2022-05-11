@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    @apply bg-[#141414] text-white;
+  }
+}
