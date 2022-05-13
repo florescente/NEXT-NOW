@@ -5,9 +5,16 @@
 @layer base {
   html,
   body {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     @apply bg-[#141414] text-white;
+  }
+}
+@layer components {
+  figure > span {
+    width: 100% !important;
   }
 }
