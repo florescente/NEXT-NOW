@@ -1,8 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Imagine } from './typings'
+import { decode } from 'blurhash'
+import { createCanvas } from 'canvas'
 
 const Home = (posts: Imagine) => {
+  function blurDataURLi(blurhashi: string) {
+    const pixels = decode(blurhashi, 32, 32)
+    const canvas = createCanvas(32, 32)
+    const ctx = canvas.getContext('2d')
+    const imageData = ctx.createImageData(32, 32)
+    imageData.data.set(pixels)
+    ctx.putImageData(imageData, 0, 0)
+    const blurDataUrl = canvas.toDataURL()
+    return blurDataUrl
+  }
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -24,8 +36,8 @@ const Home = (posts: Imagine) => {
                 key={dog.id}
                 alt="Image"
                 objectFit="fill"
-                /* placeholder="blur"
-                blurDataURL={dog.blur_hash} */
+                placeholder="blur"
+                blurDataURL={blurDataURLi(dog.blur_hash)}
                 className="w-full	rounded"
               />
             </figure>
@@ -41,7 +53,7 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts
   const Access_Key = process.env.NEXT_PUBLIC_API_KEY_UNSPLASH
   const res = await fetch(
-    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=office&client_id=${Access_Key}`
+    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=rainbow&client_id=${Access_Key}`
   )
   const posts = await res.json()
   // By returning { props: { posts } }, the Blog component
