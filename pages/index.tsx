@@ -55,19 +55,15 @@ const Home = (posts: Imagine) => {
     </div>
   )
 }
-//flex break-inside-avoid m-0
-// This function gets called at build time
+
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts
   const Access_Key = process.env.NEXT_PUBLIC_API_KEY_UNSPLASH
   const res = await fetch(
     `https://api.unsplash.com/search/photos?page=1&per_page=30&query=rainbow&client_id=${Access_Key}`
   )
   const posts = await res.json()
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
-    props: posts, // will be passed to the page component as props
+    props: posts,
   }
 }
 
