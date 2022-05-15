@@ -5,11 +5,13 @@ import { decode } from 'blurhash'
 import { createCanvas } from 'canvas'
 
 const Home = (posts: Imagine) => {
-  function blurDataURLi(blurhashi: string) {
-    const pixels = decode(blurhashi, 32, 32)
-    const canvas = createCanvas(32, 32)
+  function blurDataURLi(blurhashi: string, prorp: number) {
+    const height = Math.round((195 * Math.round(prorp * 100)) / 100)
+    const width = Math.round(195)
+    const pixels = decode(blurhashi, width, height)
+    const canvas = createCanvas(width, height)
     const ctx = canvas.getContext('2d')
-    const imageData = ctx.createImageData(32, 32)
+    const imageData = ctx.createImageData(width, height)
     imageData.data.set(pixels)
     ctx.putImageData(imageData, 0, 0)
     const blurDataUrl = canvas.toDataURL()
@@ -21,24 +23,30 @@ const Home = (posts: Imagine) => {
         <title>Next Now</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-4/5 h-screen mt-10">
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-full m-0 p-0">
+      <main className="w-full md:w-4/5 h-screen mt-10">
+        <h1 className="flex text-center justify-center text-2xl mb-4">
+          Masonry Image gallery
+        </h1>
+        <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-6	md:gap-3 w-full m-0 px-0 py-4">
           {posts.results.map((dog) => (
             <figure
               key={dog.id + 'key'}
-              className="flex break-inside-avoid mb-4 p-0 border-2 border-white"
+              className="flex break-inside-avoid mb-4 p-0 border-none"
             >
               <Image
-                src={dog.urls.regular}
-                height={dog.height / 30}
+                src={dog.urls.thumb}
+                height={(dog.height / dog.width) * 195}
                 width="100%"
                 id={dog.id}
                 key={dog.id}
                 alt="Image"
                 objectFit="fill"
                 placeholder="blur"
-                blurDataURL={blurDataURLi(dog.blur_hash)}
-                className="w-full	rounded"
+                blurDataURL={blurDataURLi(
+                  dog.blur_hash,
+                  dog.height / dog.width
+                )}
+                className="w-full	rounded-lg"
               />
             </figure>
           ))}

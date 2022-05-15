@@ -16,5 +16,9 @@
 @layer components {
   figure > span {
     width: 100% !important;
+    overflow: visible !important;
+  }
+  figure > span > img {
+    filter: none !important;
   }
 }
