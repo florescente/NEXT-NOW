@@ -14,10 +14,12 @@ yarn dlx @yarnpkg/sdks vscode
 
 VScode configuration:
 
+```bash
 Select Typescript Version: Workspace Version
 Select Language Mode: Typescript React
+```
 
-Environmental variables:
+Environmental variables(.env.local):
 
 NEXT_PUBLIC_API_KEY_UNSPLASH - Unsplash API
 
