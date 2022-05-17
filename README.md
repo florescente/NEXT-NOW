@@ -10,9 +10,16 @@ Execute:
 yarn set version berry
 yarn install
 yarn dlx @yarnpkg/sdks vscode
-Select Typescript Version: Workspace Version
-Select Language Mode: Typescript React for .tsx done in .vscode folder
 ```
+
+VScode configuration:
+
+Select Typescript Version: Workspace Version
+Select Language Mode: Typescript React
+
+Environmental variables:
+
+NEXT_PUBLIC_API_KEY_UNSPLASH - Unsplash API
 
 ## Deploy your own
 

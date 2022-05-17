@@ -2,7 +2,7 @@ import { decode } from 'blurhash'
 import { createCanvas } from 'canvas'
 
 export function blurDataURLi(blurhashi: string, prorp: number) {
-  const height = Math.round((195 * Math.round(prorp * 100)) / 100)
+  const height = Math.round((210 * Math.round(prorp * 100)) / 100)
   const width = Math.round(210)
   const pixels = decode(blurhashi, width, height)
   const canvas = createCanvas(width, height)

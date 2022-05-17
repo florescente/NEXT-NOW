@@ -11,27 +11,27 @@ const Home = (posts: Imagine) => {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <main className="w-full md:w-4/5 h-screen mt-10">
-        <h1 className="flex text-center justify-center text-2xl mb-4">
+      <main className="flex flex-col items-center w-full md:w-4/5 h-screen mt-10">
+        <h1 className="flex text-center justify-center text-2xl mb-4 font-bebas">
           Masonry Image gallery
         </h1>
-        <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-6	md:gap-3 w-full m-0 px-0 py-4">
-          {posts.results.map((dog, id) => (
+        <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-fit m-0 px-0 py-4">
+          {posts.results.map((dog) => (
             <figure
               key={dog.id + 'key'}
-              className="flex break-inside-avoid mb-4 p-0 border-none"
+              className="flex justify-center break-inside-avoid mb-4 p-0 border-none relative"
             >
               <Image
                 src={dog.urls.thumb}
-                height={(dog.height / dog.width) * 195}
-                width="100%"
+                height={(dog.height / dog.width) * 210}
+                width={210}
                 id={dog.id}
                 key={dog.id}
                 alt="Image"
                 objectFit="fill"
                 placeholder="blur"
                 blurDataURL={dog.real_hash}
-                className="w-full	rounded-lg"
+                className="rounded-lg"
               />
             </figure>
           ))}
