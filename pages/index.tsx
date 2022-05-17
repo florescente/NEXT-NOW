@@ -44,7 +44,7 @@ const Home = (posts: Imagine) => {
 export async function getStaticProps() {
   const Access_Key = process.env.NEXT_PUBLIC_API_KEY_UNSPLASH
   const res = await fetch(
-    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=rainbow&client_id=${Access_Key}`
+    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=dog&client_id=${Access_Key}`
   )
   const posts: Imagine = await res.json()
   posts.results.map((cat) => {
