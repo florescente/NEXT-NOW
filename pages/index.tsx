@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Imagine } from './typings'
 import { blurDataURLi } from '../utils/blurhash'
+import Layout from '../components/layout'
+import { ReactElement } from 'react'
 
 const Home = (posts: Imagine) => {
   return (
@@ -53,6 +55,10 @@ export async function getStaticProps() {
   return {
     props: posts,
   }
+}
+
+Home.getLayout = function getLayout(home: ReactElement) {
+  return <Layout>{home}</Layout>
 }
 
 export default Home

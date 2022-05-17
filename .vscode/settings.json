@@ -9,5 +9,6 @@
   "editor.formatOnSave": true,
   "files.associations": {
     "*.tsx": "typescriptreact"
-  }
+  },
+  "tailwindCSS.emmetCompletions": true
 }
