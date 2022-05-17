@@ -10,6 +10,6 @@ export function blurDataURLi(blurhashi: string, prorp: number) {
   const imageData = ctx.createImageData(width, height)
   imageData.data.set(pixels)
   ctx.putImageData(imageData, 0, 0)
-  const blurDataUrl = canvas.toDataURL()
+  const blurDataUrl = canvas.toDataURL('image/jpeg', 0.5)
   return blurDataUrl
 }
