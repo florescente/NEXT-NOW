@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Imagine } from './typings'
+import { Imagine } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
 import Layout from '../components/layout'
 import { ReactElement } from 'react'
