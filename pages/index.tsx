@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Imagine } from '../Interfaces/typings'
+import { Imagine, RootObject } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
 import Layout from '../components/layout'
 import { ReactElement } from 'react'
@@ -18,7 +18,7 @@ const Home = (posts: Imagine) => {
           Masonry Image gallery
         </h1>
         <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-fit m-0 px-0 py-4">
-          {posts.results.map((dog) => (
+          {posts.results!.map((dog) => (
             <figure
               key={dog.id + 'key'}
               className="flex justify-center break-inside-avoid mb-4 p-0 border-none relative"
@@ -49,9 +49,18 @@ export async function getStaticProps() {
     `https://api.unsplash.com/search/photos?page=1&per_page=30&query=dog&client_id=${Access_Key}`
   )
   const posts: Imagine = await res.json()
-  posts.results.map((cat) => {
-    cat.real_hash = blurDataURLi(cat.blur_hash, cat.height / cat.width)
+  const potato: RootObject[] = []
+  posts.results!.map((cat) => {
+    potato.push({
+      id: cat.id,
+      urls: { thumb: cat.urls.thumb, regular: cat.urls.regular },
+      height: cat.height,
+      width: cat.width,
+      real_hash: blurDataURLi(cat.blur_hash!, cat.height / cat.width),
+    })
   })
+  delete posts.results
+  posts.results = potato
   return {
     props: posts,
   }
