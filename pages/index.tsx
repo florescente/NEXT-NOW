@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Imagine, RootObject } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
-import Layout from '../components/layout'
 import { ReactElement } from 'react'
+import Layout from '../components/layout'
 
 const Home = (posts: Imagine) => {
   return (
@@ -33,7 +33,7 @@ const Home = (posts: Imagine) => {
                 objectFit="fill"
                 placeholder="blur"
                 blurDataURL={dog.real_hash}
-                className="rounded-lg"
+                className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300"
               />
             </figure>
           ))}

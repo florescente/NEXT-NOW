@@ -15,10 +15,10 @@
   }
 }
 @layer components {
-  figure > span {
-    overflow: visible !important;
-  }
   figure > span > img {
     filter: blur(0) !important;
+  }
+  figure {
+    background: radial-gradient(ellipse at center, white, #141414);
   }
 }
