@@ -33,7 +33,7 @@ const Home = (posts: Imagine) => {
                 objectFit="fill"
                 placeholder="blur"
                 blurDataURL={dog.real_hash}
-                className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300"
+                className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300 cursor-zoom-in"
               />
             </figure>
           ))}
