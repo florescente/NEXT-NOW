@@ -4,11 +4,11 @@ import { Imagine, RootObject } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
 import { ReactElement, useState } from 'react'
 import Layout from '../components/layout'
-import modal from '../utils/modal'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
+  const [onModal, setOnModal] = useState(['/', 'blur', '0', '0', 'id'])
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -42,7 +42,13 @@ const Home = (posts: Imagine) => {
                   blurDataURL={dog.real_hash}
                   className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300 cursor-zoom-in"
                   onClick={() => {
-                    modal(dog.urls.regular, dog.real_hash)
+                    setOnModal([
+                      dog.urls.regular,
+                      dog.real_hash,
+                      (dog.height / 4).toString(),
+                      (dog.width / 4).toString(),
+                      dog.id,
+                    ])
                     setIsModal(!isModal)
                   }}
                 />
@@ -66,13 +72,15 @@ const Home = (posts: Imagine) => {
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
           <Image
-            src="https://images.unsplash.com/photo-1638913970961-1946e5ee65c4?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MnwzMjgwMTN8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MjM0MjU4MQ\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080"
-            id="example"
-            key="example"
-            height={2160 / 4}
-            width={3840 / 4}
-            alt="example"
+            src={onModal[0]}
+            id={onModal[4] + ' big'}
+            key={onModal[4] + ' big'}
+            height={parseInt(onModal[2])}
+            width={parseInt(onModal[3])}
+            alt="image big"
             objectFit="fill"
+            placeholder="blur"
+            blurDataURL={onModal[1]}
             className=""
           />
         </div>
