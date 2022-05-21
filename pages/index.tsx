@@ -8,9 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
-  const [onModal, setOnModal] = useState<[string?, number?, number?, string?]>(
-    []
-  )
+  const [onModal, setOnModal] = useState<[string?, string?]>([])
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -44,12 +42,7 @@ const Home = (posts: Imagine) => {
                   blurDataURL={dog.real_hash}
                   className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300 cursor-zoom-in"
                   onClick={() => {
-                    setOnModal([
-                      dog.urls.regular,
-                      dog.height / 4,
-                      dog.width / 4,
-                      dog.id,
-                    ])
+                    setOnModal([dog.urls.regular, dog.id])
                     setIsModal(!isModal)
                   }}
                 />
@@ -72,16 +65,16 @@ const Home = (posts: Imagine) => {
           />
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
-          <Image
-            src={onModal[0] || '/2020.webp'}
-            id={(onModal[3] || 'popotas') + ' big'}
-            key={(onModal[3] || 'popotas') + ' big'}
-            height={onModal[1] || 2}
-            width={onModal[2] || 2}
-            alt="image big"
-            objectFit="fill"
-            className=""
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={onModal[0] || '/2020.webp'}
+              id={(onModal[1] || 'popotas') + ' big'}
+              key={(onModal[1] || 'popotas') + ' big'}
+              alt="image big"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
       </div>
     </>
