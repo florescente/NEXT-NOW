@@ -80,8 +80,6 @@ const Home = (posts: Imagine) => {
             width={onModal[2] || 2}
             alt="image big"
             objectFit="fill"
-            /* placeholder="blur"
-            blurDataURL={onModal[0]} */
             className=""
           />
         </div>
