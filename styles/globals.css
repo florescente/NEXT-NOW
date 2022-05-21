@@ -12,6 +12,7 @@
     box-sizing: border-box;
     background-color: #141414;
     color: white;
+    position: relative;
   }
 }
 @layer components {
@@ -19,6 +20,9 @@
     filter: blur(0) !important;
   }
   figure {
-    background: radial-gradient(ellipse at center, white, #141414);
+    background: radial-gradient(ellipse at center, white, black);
+  }
+  .modal {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }
