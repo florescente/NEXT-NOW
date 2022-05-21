@@ -8,7 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
-  const [onModal, setOnModal] = useState<[string?, string?, string?, string?]>(
+  const [onModal, setOnModal] = useState<[string?, number?, number?, string?]>(
     []
   )
   return (
@@ -46,8 +46,8 @@ const Home = (posts: Imagine) => {
                   onClick={() => {
                     setOnModal([
                       dog.urls.regular,
-                      (dog.height / 4).toString(),
-                      (dog.width / 4).toString(),
+                      dog.height / 4,
+                      dog.width / 4,
                       dog.id,
                     ])
                     setIsModal(!isModal)
@@ -73,14 +73,11 @@ const Home = (posts: Imagine) => {
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
           <Image
-            src={
-              onModal[0] ||
-              'https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1638913970961-1946e5ee65c4'
-            }
+            src={onModal[0] || '/2020.webp'}
             id={(onModal[3] || 'popotas') + ' big'}
             key={(onModal[3] || 'popotas') + ' big'}
-            height={parseInt(onModal[1] || '2')}
-            width={parseInt(onModal[2] || '2')}
+            height={onModal[1] || 2}
+            width={onModal[2] || 2}
             alt="image big"
             objectFit="fill"
             /* placeholder="blur"
