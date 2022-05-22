@@ -40,12 +40,15 @@ const Home = (posts: Imagine) => {
                   objectFit="fill"
                   placeholder="blur"
                   blurDataURL={dog.real_hash}
-                  className="rounded-lg transition ease-in-out delay-150 hover:opacity-75 duration-300 cursor-zoom-in"
+                  className="rounded-lg"
+                />
+                <div
+                  className="rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   onClick={() => {
                     setOnModal([dog.urls.regular, dog.id])
                     setIsModal(!isModal)
                   }}
-                />
+                ></div>
               </figure>
             ))}
           </div>
@@ -68,8 +71,8 @@ const Home = (posts: Imagine) => {
           <div className="relative w-full h-full">
             <Image
               src={onModal[0] || '/2020.webp'}
-              id={(onModal[1] || 'popotas') + ' big'}
-              key={(onModal[1] || 'popotas') + ' big'}
+              id={onModal[1] || 'popotas'}
+              key={onModal[1] || 'popotas'}
               alt="image big"
               layout="fill"
               objectFit="contain"

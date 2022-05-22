@@ -19,8 +19,8 @@
   figure > span > img {
     filter: blur(0) !important;
   }
-  figure {
-    background: radial-gradient(ellipse at center, white, black);
+  .overimage {
+    background: radial-gradient(ellipse at center, transparent, black);
   }
   .modal {
     background-color: rgba(0, 0, 0, 0.8);
