@@ -8,6 +8,7 @@
   "dependencies": {
     "blurhash": "^1.1.5",
     "canvas": "^2.9.1",
+    "nanoid": "^3.3.4",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

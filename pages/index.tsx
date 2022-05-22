@@ -8,7 +8,6 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
-  const [onModal, setOnModal] = useState<[string?, string?]>([])
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -45,7 +44,6 @@ const Home = (posts: Imagine) => {
                 <div
                   className="rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   onClick={() => {
-                    setOnModal([dog.urls.regular, dog.id])
                     setIsModal(!isModal)
                   }}
                 ></div>
@@ -69,14 +67,14 @@ const Home = (posts: Imagine) => {
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
           <div className="relative w-full h-full">
-            <Image
-              src={onModal[0] || '/2020.webp'}
-              id={onModal[1] + 'oi' || 'popotas'}
-              key={onModal[1] + 'oi' || 'popotas'}
+            {/* <Image
+              src={}
+              id={}
+              key={}
               alt="image big"
               layout="fill"
               objectFit="contain"
-            />
+            /> */}
           </div>
         </div>
       </div>
