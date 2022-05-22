@@ -71,8 +71,8 @@ const Home = (posts: Imagine) => {
           <div className="relative w-full h-full">
             <Image
               src={onModal[0] || '/2020.webp'}
-              id={onModal[1] || 'popotas'}
-              key={onModal[1] || 'popotas'}
+              id={onModal[1] + 'oi' || 'popotas'}
+              key={onModal[1] + 'oi' || 'popotas'}
               alt="image big"
               layout="fill"
               objectFit="contain"
