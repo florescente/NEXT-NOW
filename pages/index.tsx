@@ -2,12 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Imagine, RootObject } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
-import { ReactElement, useState } from 'react'
+import { ReactElement, useRef, useState } from 'react'
 import Layout from '../components/layout'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
+  const refImage = useRef<string>('/2020.webp')
+  const refId = useRef<string>('1234567890')
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -44,6 +46,8 @@ const Home = (posts: Imagine) => {
                 <div
                   className="rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   onClick={() => {
+                    refImage.current = dog.urls.regular
+                    refId.current = dog.id
                     setIsModal(!isModal)
                   }}
                 ></div>
@@ -67,14 +71,15 @@ const Home = (posts: Imagine) => {
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
           <div className="relative w-full h-full">
-            {/* <Image
-              src={}
-              id={}
-              key={}
+            <Image
+              src={refImage.current}
+              id={refId + 'oiasd'}
+              key={refId + 'oiasd'}
               alt="image big"
               layout="fill"
               objectFit="contain"
-            /> */}
+              className="absolute"
+            />
           </div>
         </div>
       </div>
