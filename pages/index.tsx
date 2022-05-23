@@ -44,7 +44,7 @@ const Home = (posts: Imagine) => {
                   className="rounded-lg"
                 />
                 <div
-                  className="rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
+                  className="openmodal rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   onClick={() => {
                     refImage.current = dog.urls.regular
                     refId.current = dog.id
@@ -65,7 +65,7 @@ const Home = (posts: Imagine) => {
       >
         <div className="flex justify-end basis-1/12">
           <AiOutlineClose
-            className="flex self-center text-4xl mr-2.5"
+            className="closemodal flex self-center text-4xl mr-2.5"
             onClick={() => setIsModal(!isModal)}
           />
         </div>
