@@ -9,6 +9,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 const Home = (posts: Imagine) => {
   const [isModal, setIsModal] = useState<boolean>(false)
   const refImage = useRef<string>('/2020.webp')
+  const refBlur = useRef<string>('/2020.webp')
   const refId = useRef<string>('1234567890')
   return (
     <>
@@ -47,6 +48,7 @@ const Home = (posts: Imagine) => {
                   className="openmodal rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   onClick={() => {
                     refImage.current = dog.urls.regular
+                    refBlur.current = dog.real_hash
                     refId.current = dog.id
                     setIsModal(!isModal)
                   }}
@@ -70,6 +72,17 @@ const Home = (posts: Imagine) => {
           />
         </div>
         <div className="flex justify-center items-center basis-11/12 relative">
+          <div className="absolute h-full w-full">
+            <Image
+              src={refBlur.current}
+              id={refId.current + 'blur'}
+              key={refId.current + 'blur'}
+              alt="image big load"
+              layout="fill"
+              objectFit="contain"
+              className=""
+            />
+          </div>
           <div className="relative w-full h-full">
             <Image
               src={refImage.current}
