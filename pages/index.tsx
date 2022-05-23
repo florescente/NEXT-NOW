@@ -73,8 +73,8 @@ const Home = (posts: Imagine) => {
           <div className="relative w-full h-full">
             <Image
               src={refImage.current}
-              id={refId + 'oiasd'}
-              key={refId + 'oiasd'}
+              id={refId.current + 'oiasd'}
+              key={refId.current + 'oiasd'}
               alt="image big"
               layout="fill"
               objectFit="contain"
