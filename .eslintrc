@@ -18,5 +18,13 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
-  "rules": {}
+  "rules": {
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/destructuring-assignment": "off",
+    "array-callback-return": "off",
+    "react/jsx-props-no-spreading": "off"
+  }
 }

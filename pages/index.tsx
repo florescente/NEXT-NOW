@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { ReactElement, useRef, useState } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 import { Imagine, RootObject } from '../Interfaces/typings'
 import { blurDataURLi } from '../utils/blurhash'
-import { ReactElement, useRef, useState } from 'react'
 import Layout from '../components/layout'
-import { AiOutlineClose } from 'react-icons/ai'
 
-const Home = (posts: Imagine) => {
+function Home(posts: Imagine) {
   const [isModal, setIsModal] = useState<boolean>(false)
   const refImage = useRef<string>('/2020.webp')
   const refBlur = useRef<string>('/2020.webp')
@@ -29,7 +29,7 @@ const Home = (posts: Imagine) => {
           <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-fit m-0 px-0 py-4">
             {posts.results!.map((dog) => (
               <figure
-                key={dog.id + 'key'}
+                key={`${dog.id}key`}
                 className="flex justify-center break-inside-avoid mb-4 p-0 border-none relative rounded-lg"
               >
                 <Image
@@ -46,13 +46,20 @@ const Home = (posts: Imagine) => {
                 />
                 <div
                   className="openmodal rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
+                  aria-hidden="true"
+                  onKeyDown={() => {
+                    refImage.current = dog.urls.regular
+                    refBlur.current = dog.real_hash
+                    refId.current = dog.id
+                    setIsModal(!isModal)
+                  }}
                   onClick={() => {
                     refImage.current = dog.urls.regular
                     refBlur.current = dog.real_hash
                     refId.current = dog.id
                     setIsModal(!isModal)
                   }}
-                ></div>
+                />
               </figure>
             ))}
           </div>
@@ -75,8 +82,8 @@ const Home = (posts: Imagine) => {
           <div className="absolute h-full w-full">
             <Image
               src={refBlur.current}
-              id={refId.current + 'blur'}
-              key={refId.current + 'blur'}
+              id={`${refId.current}blur`}
+              key={`${refId.current}blur`}
               alt="image big load"
               layout="fill"
               objectFit="contain"
@@ -86,8 +93,8 @@ const Home = (posts: Imagine) => {
           <div className="relative w-full h-full">
             <Image
               src={refImage.current}
-              id={refId.current + 'oiasd'}
-              key={refId.current + 'oiasd'}
+              id={`${refId.current}oiasd`}
+              key={`${refId.current}oiasd`}
               alt="image big"
               layout="fill"
               objectFit="contain"
@@ -101,9 +108,9 @@ const Home = (posts: Imagine) => {
 }
 
 export async function getStaticProps() {
-  const Access_Key = process.env.NEXT_PUBLIC_API_KEY_UNSPLASH
+  const AccessKey = process.env.NEXT_PUBLIC_API_KEY_UNSPLASH
   const res = await fetch(
-    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=dog&client_id=${Access_Key}`
+    `https://api.unsplash.com/search/photos?page=1&per_page=30&query=dog&client_id=${AccessKey}`
   )
   const posts: Imagine = await res.json()
   const potato: RootObject[] = []
