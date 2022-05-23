@@ -13,5 +13,7 @@
   "tailwindCSS.emmetCompletions": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn"
 }
