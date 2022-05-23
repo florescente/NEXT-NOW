@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "test": "cypress open",
-    "record": "cypress run --record --key 98b51558-8001-4208-8ca3-5ab5ce205c8c"
+    "record": "cypress run --record --key 98b51558-8001-4208-8ca3-5ab5ce205c8c",
+    "lint": "eslint ."
   },
   "dependencies": {
     "blurhash": "^1.1.5",
@@ -18,8 +19,20 @@
   "devDependencies": {
     "@types/node": "17.0.4",
     "@types/react": "17.0.38",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
     "autoprefixer": "^10.4.0",
     "cypress": "^9.6.1",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "latest",
+    "eslint-config-next": "^12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-next": "^0.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.1",
