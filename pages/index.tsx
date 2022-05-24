@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { ReactElement, useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Imagine, RootObject } from '../Interfaces/typings'
-import { blurDataURLi } from '../utils/blurhash'
+import blurDataURLi from '../utils/blurhash'
 import Layout from '../components/layout'
 
 function Home(posts: Imagine) {
