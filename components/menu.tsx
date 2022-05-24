@@ -2,20 +2,20 @@ import Link from 'next/link'
 
 function Menu() {
   return (
-    <ul>
+    <ul className="flex">
       <li>
         <Link href="/">
-          <a>Home</a>
+          <h1>Home</h1>
         </Link>
       </li>
       <li>
         <Link href="/blog">
-          <a>Blog</a>
+          <h1>Blog</h1>
         </Link>
       </li>
       <li>
-        <Link href="/blog/hello-world">
-          <a>Blog Post</a>
+        <Link href="/blog/1">
+          <h1>Blog Post</h1>
         </Link>
       </li>
     </ul>

@@ -1,5 +1,5 @@
+import React from 'react'
 import Menu from './menu'
-import Muu from './muu'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -8,7 +8,6 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Muu />
       <Menu />
       <main>{children}</main>
     </>
