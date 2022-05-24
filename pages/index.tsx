@@ -82,23 +82,23 @@ function Home(posts: Imagine) {
           <div className="absolute h-full w-full">
             <Image
               src={refBlur.current}
-              id={`${refId.current}blur`}
-              key={`${refId.current}blur`}
-              alt="image big load"
+              id={`${refId.current}-blur`}
+              key={`${refId.current}-blur`}
+              alt="image big loading"
               layout="fill"
               objectFit="contain"
-              className=""
             />
           </div>
           <div className="relative w-full h-full">
             <Image
               src={refImage.current}
-              id={`${refId.current}oiasd`}
-              key={`${refId.current}oiasd`}
+              id={`${refId.current}-modal`}
+              key={`${refId.current}-modal`}
               alt="image big"
               layout="fill"
               objectFit="contain"
               className="absolute"
+              priority={false}
             />
           </div>
         </div>

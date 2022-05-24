@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 function Menu() {
   return (
-    <ul className="flex">
+    <ul className="flex space-x-10 justify-end p-5 cursor-pointer">
       <li>
         <Link href="/">
           <h1>Home</h1>
