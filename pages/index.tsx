@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { ReactElement, useRef, useState } from 'react'
+import React, { ReactElement, useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import _ from 'lodash'
 import { Imagine, RootObject } from '../Interfaces/typings'
@@ -28,7 +28,7 @@ function Home(posts: Imagine) {
           <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-fit m-0 px-0 py-4">
             {posts.results!.map((dog, index) => (
               <figure
-                key={`${dog.id}key`}
+                key={`${dog.id}-figure`}
                 className="flex justify-center break-inside-avoid mb-4 p-0 border-none relative rounded-lg"
               >
                 <Image
@@ -68,14 +68,16 @@ function Home(posts: Imagine) {
         }
       >
         {posts.results!.map((horse, id) => (
-          <>
+          <React.Fragment key={`${horse.id}-item`}>
             <div
+              key={`${horse.id}-wrapper-top--id`}
               className={`${
                 refLoop.current[id] ? 'flex' : 'hidden'
               } justify-end basis-1/12`}
             >
               <AiOutlineClose
                 className="closemodal flex self-center text-4xl mr-2.5"
+                key={`${horse.id}-icon-id`}
                 onClick={() => {
                   refLoop.current[id] = false
                   setIsModal(!isModal)
@@ -83,11 +85,15 @@ function Home(posts: Imagine) {
               />
             </div>
             <div
+              key={`${horse.id}-wrapper-bot-id`}
               className={`${
                 refLoop.current[id] ? 'flex' : 'hidden'
               } flex justify-center items-center basis-11/12 relative`}
             >
-              <div className="absolute h-full w-full">
+              <div
+                key={`${horse.id}-wrapper-img-top`}
+                className="absolute h-full w-full"
+              >
                 <Image
                   src={horse.real_hash}
                   id={`${horse.id}-blur`}
@@ -97,7 +103,10 @@ function Home(posts: Imagine) {
                   objectFit="contain"
                 />
               </div>
-              <div className="relative w-full h-full">
+              <div
+                key={`${horse.id}-wrapper-img-bot`}
+                className="relative w-full h-full"
+              >
                 <Image
                   src={horse.urls.regular}
                   id={`${horse.id}-modal`}
@@ -109,7 +118,7 @@ function Home(posts: Imagine) {
                 />
               </div>
             </div>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>
