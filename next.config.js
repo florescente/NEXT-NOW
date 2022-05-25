@@ -6,8 +6,7 @@ const ContentSecurityPolicy = `
   font-src 'self' https://fonts.gstatic.com;
   script-src 'self' 'unsafe-eval';
   script-src-elem 'self';
-  frame-src 'none'; 
-  sandbox allow-same-origin allow-scripts allow-popups allow-forms;
+  frame-src 'none';
 `
 const securityHeaders = [
   {
