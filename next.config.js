@@ -3,10 +3,7 @@ const ContentSecurityPolicy = `
   default-src 'self' 'unsafe-eval';
   img-src 'self' data:;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-  script-src 'self' 'unsafe-eval';
-  script-src-elem 'self';
-  frame-src 'none';
+  font-src https://fonts.gstatic.com;
 `
 const securityHeaders = [
   {
