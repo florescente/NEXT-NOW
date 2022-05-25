@@ -2,15 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { ReactElement, useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import _ from 'lodash'
 import { Imagine, RootObject } from '../Interfaces/typings'
 import blurDataURLi from '../utils/blurhash'
 import Layout from '../components/layout'
 
 function Home(posts: Imagine) {
   const [isModal, setIsModal] = useState<boolean>(false)
-  const refImage = useRef<string>('/2020.webp')
-  const refBlur = useRef<string>('/2020.webp')
-  const refId = useRef<string>('1234567890')
+  const refLoop = useRef(_.fill(Array(posts.results?.length), false))
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -27,7 +26,7 @@ function Home(posts: Imagine) {
             Masonry Image gallery
           </h1>
           <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 w-fit m-0 px-0 py-4">
-            {posts.results!.map((dog) => (
+            {posts.results!.map((dog, index) => (
               <figure
                 key={`${dog.id}key`}
                 className="flex justify-center break-inside-avoid mb-4 p-0 border-none relative rounded-lg"
@@ -48,15 +47,11 @@ function Home(posts: Imagine) {
                   className="openmodal rounded-lg cursor-zoom-in absolute overimage w-full h-full opacity-0 transition ease-in-out delay-150 hover:opacity-75"
                   aria-hidden="true"
                   onKeyDown={() => {
-                    refImage.current = dog.urls.regular
-                    refBlur.current = dog.real_hash
-                    refId.current = dog.id
+                    refLoop.current[index] = true
                     setIsModal(!isModal)
                   }}
                   onClick={() => {
-                    refImage.current = dog.urls.regular
-                    refBlur.current = dog.real_hash
-                    refId.current = dog.id
+                    refLoop.current[index] = true
                     setIsModal(!isModal)
                   }}
                 />
@@ -72,36 +67,50 @@ function Home(posts: Imagine) {
             : 'fixed modal h-screen w-full top-0 left-0 text-cyan-100 hidden flex-col'
         }
       >
-        <div className="flex justify-end basis-1/12">
-          <AiOutlineClose
-            className="closemodal flex self-center text-4xl mr-2.5"
-            onClick={() => setIsModal(!isModal)}
-          />
-        </div>
-        <div className="flex justify-center items-center basis-11/12 relative">
-          <div className="absolute h-full w-full">
-            <Image
-              src={refBlur.current}
-              id={`${refId.current}-blur`}
-              key={`${refId.current}-blur`}
-              alt="image big loading"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
-          <div className="relative w-full h-full">
-            <Image
-              src={refImage.current}
-              id={`${refId.current}-modal`}
-              key={`${refId.current}-modal`}
-              alt="image big"
-              layout="fill"
-              objectFit="contain"
-              className="absolute"
-              priority={false}
-            />
-          </div>
-        </div>
+        {posts.results!.map((horse, id) => (
+          <>
+            <div
+              className={`${
+                refLoop.current[id] ? 'flex' : 'hidden'
+              } justify-end basis-1/12`}
+            >
+              <AiOutlineClose
+                className="closemodal flex self-center text-4xl mr-2.5"
+                onClick={() => {
+                  refLoop.current[id] = false
+                  setIsModal(!isModal)
+                }}
+              />
+            </div>
+            <div
+              className={`${
+                refLoop.current[id] ? 'flex' : 'hidden'
+              } flex justify-center items-center basis-11/12 relative`}
+            >
+              <div className="absolute h-full w-full">
+                <Image
+                  src={horse.real_hash}
+                  id={`${horse.id}-blur`}
+                  key={`${horse.id}-blur`}
+                  alt="image big loading"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+              <div className="relative w-full h-full">
+                <Image
+                  src={horse.urls.regular}
+                  id={`${horse.id}-modal`}
+                  key={`${horse.id}-modal`}
+                  alt="image big"
+                  layout="fill"
+                  objectFit="contain"
+                  priority={false}
+                />
+              </div>
+            </div>
+          </>
+        ))}
       </div>
     </>
   )
