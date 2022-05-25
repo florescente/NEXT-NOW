@@ -13,6 +13,10 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
   },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
 ]
 module.exports = {
   images: {
