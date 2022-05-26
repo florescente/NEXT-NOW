@@ -5,7 +5,7 @@ const ContentSecurityPolicy = `
 `
 const securityHeaders = [
   {
-    key: 'Content-Security-Policy',
+    key: 'content-security-policy',
     value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
   },
   {
