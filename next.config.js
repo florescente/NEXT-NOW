@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const ContentSecurityPolicy = `
-  default-src 'none';
   img-src 'self' data:;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-  script-src 'self' 'unsafe-eval';
 `
 const securityHeaders = [
   {
